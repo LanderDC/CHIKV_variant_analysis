@@ -1,0 +1,4 @@
+group1	group2	n1	n2	statistic	p	p.adj	p.adj.signif
+COMBO	MPV10	5	4	7	0.278	0.278	ns
+COMBO	MPV50	5	5	0	0.004	0.012	*
+COMBO	MPV100	5	3	0	0.018	0.027	*
