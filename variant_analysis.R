@@ -191,9 +191,9 @@ barplot <- final_df |>
   geom_hline(yintercept = 1, linetype=3, color = "black") +
   geom_vline(xintercept = 4.5, linetype = "dashed")+
   geom_vline(xintercept = 12.5, linetype = "dashed")+
-  annotate("text", x=2.5, y=6, label = "Transitions", size = 2)+
-  annotate("text", x=8.5, y=6, label = "Transversions", size = 2)+
-  annotate("text", x=13.5, y=6, label = "Indels", size = 2)+
+  annotate("text", x=2.5, y=6, label = "Transitions", size = 3)+
+  annotate("text", x=8.5, y=6, label = "Transversions", size = 3)+
+  annotate("text", x=13.5, y=6, label = "Indels", size = 3)+
   labs(y="Fold change \n (mean mutation count scaled to control group)")+
   scale_fill_manual(values=cols)+
   #scale_x_discrete(limits=rev)+
