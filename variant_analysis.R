@@ -271,7 +271,7 @@ barplot_df |>
   #filter(type.x != "CTRL") |> 
   ggplot(aes(x=mutation, y=relative, fill=type))+
   geom_col(position = "dodge")+
-  geom_hline(yintercept = 1, linetype=3, color = "black") +
+  #geom_hline(yintercept = 1, linetype=3, color = "black") +
   geom_vline(xintercept = 4.5, linetype = "dashed")+
   geom_vline(xintercept = 12.5, linetype = "dashed")+
   annotate("text", x=2.5, y=20, label = "Transitions", size = 3)+
