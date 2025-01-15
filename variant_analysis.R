@@ -147,8 +147,8 @@ sp <- c(0, 0)
 
 boxplot <- total_df |> 
   ggplot(aes(x=type, y=normalized_mutations))+
-  geom_boxplot(aes(color=type, fill=type))+
-  geom_point(aes(color=type))+
+  geom_boxplot(aes(color=type, fill=type), outliers = F)+
+  geom_point(aes(color=type), size=1)+
   #ggpubr::geom_pwc(
   #  method = "wilcox_test",
   #  method.args=list(alternative="less"),
