@@ -204,25 +204,19 @@ barplot <- final_df |>
         legend.title=element_blank())
 ggsave("figures/scaled_barplot.pdf", dpi=300, device=cairo_pdf, width=7, height=5)
  
+# Statistics
+# Wilcoxon tests on transitions
+final_df |> 
+  filter(mutation %in% transitions,
+         type %in% c("COMBO", "MPV10", "MPV50", "MPV100")) |> 
+  group_by(mutation) |> 
+  rstatix::wilcox_test(n ~ type, ref.group = "COMBO", alternative = "less") |> 
+  select(-.y.) |> 
+  write_tsv("results/wilcoxon_test_transitions.tsv")
+
+
+# Combine plots
 library(patchwork)
-(heatmap+theme(legend.key.size = unit(3, "mm"),
-               legend.text = element_text(size=5),
-               legend.title = element_text(size=6),
-               legend.position = "right",
-               legend.margin = margin(l = -10),
-               axis.text = element_text(size=6.5),
-               text=element_text(size=9))) / 
-  (free(barplot+theme(legend.position = "bottom",
-                      legend.key.size = unit(2, "mm"),
-                      legend.text = element_text(size=5),
-                      legend.margin = margin(t = -10),
-                      axis.title=element_text(size=7),
-                      axis.text = element_text(size=6.5))) | 
-           free(boxplot+theme(axis.title=element_text(size=7), 
-                              axis.text = element_text(size=6.5))))+
-                                plot_annotation(tag_levels = 'A') & 
-                                theme(plot.tag = element_text(size = 10, face="bold"))
-ggsave("figures/FigureX.pdf", dpi=300, width=7, height=6.5, device=cairo_pdf)
 
 (((heatmap+theme(legend.key.size = unit(3, "mm"),
                legend.text = element_text(size=5),
@@ -247,7 +241,7 @@ ggsave("figures/FigureX.pdf", dpi=300, width=7, height=6.5, device=cairo_pdf)
   plot_layout(heights = c(.6, 1))+
   plot_annotation(tag_levels = 'A') & 
   theme(plot.tag = element_text(size = 10, face="bold"))
-ggsave("figures/FigureX-b.pdf", dpi=300, width=7, height=6.5, device=cairo_pdf)
+ggsave("figures/FigureX.pdf", dpi=300, width=7, height=6.5, device=cairo_pdf)
 
 barplot_df <- final_df |> 
   filter(sample != "CHIKV_AG_SOF_80_Right_ankle_50") |> 
