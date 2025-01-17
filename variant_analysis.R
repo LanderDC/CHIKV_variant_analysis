@@ -210,7 +210,7 @@ final_df |>
   filter(mutation %in% transitions,
          type %in% c("COMBO", "MPV10", "MPV50", "MPV100")) |> 
   group_by(mutation) |> 
-  rstatix::wilcox_test(n ~ type, ref.group = "COMBO", alternative = "less") |> 
+  rstatix::wilcox_test(n ~ type, ref.group = "COMBO", alternative = "less", p.adjust.method = "BH") |> 
   select(-.y.) |> 
   write_tsv("results/wilcoxon_test_transitions.tsv")
 
